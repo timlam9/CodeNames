@@ -38,14 +38,6 @@ class CodenamesFeatures {
 
 }
 
-class FakeWordsService: WordsService {
-
-    override fun words(): List<String> {
-        return (0..24).map { it.toString() }.shuffled()
-    }
-
-}
-
 
 fun launchCodenamesScreen(codenamesRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>): CodenamesRobot {
     return CodenamesRobot(codenamesRule)

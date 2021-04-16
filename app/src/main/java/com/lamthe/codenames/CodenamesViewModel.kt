@@ -9,7 +9,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CodenamesViewModel @Inject constructor(private val wordsService: WordsService) : ViewModel() {
+class CodenamesViewModel @Inject constructor(
+    private val wordsService: WordsService,
+    private val keyGenerator: KeyGenerator
+) : ViewModel() {
+
+    val key: Key = keyGenerator.generate()
+
+    var cards: List<CodenamesCard> by mutableStateOf(emptyList())
+        private set
 
     var words: List<String> by mutableStateOf(emptyList())
         private set

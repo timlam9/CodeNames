@@ -1,20 +1,18 @@
 package com.lamthe.codenames
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import com.lamthe.codenames.words.WordsService
 
-class CodenamesViewModelTest {
+class FakeWordsService: WordsService {
 
-    @Test
-    fun `given a list of words, when , then`() {
-        val viewModel = CodenamesViewModel(FakeWordsService(), FakeKeyGenerator())
-
-        val key = viewModel.key
-
-        assertEquals(createKey(), key)
+    override fun words(): List<String> {
+        return (0..24).map { it.toString() }.shuffled()
     }
 
-    private fun createKey(): Key {
+}
+
+class FakeKeyGenerator : KeyGenerator {
+
+    override fun generate(): Key {
         return Key(
             listOf(
                 KeySpot.Blue, KeySpot.White, KeySpot.White, KeySpot.Blue, KeySpot.White,
@@ -27,4 +25,3 @@ class CodenamesViewModelTest {
     }
 
 }
-
