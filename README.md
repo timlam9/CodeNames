@@ -1,2 +1,3 @@
 Backlog
-    - First step: 25 codenames cards
+    1. 25 codenames cards
+    2. Introduce DI
