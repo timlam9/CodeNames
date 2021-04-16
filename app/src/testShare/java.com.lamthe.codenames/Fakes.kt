@@ -1,5 +1,8 @@
 package com.lamthe.codenames
 
+import com.lamthe.codenames.key.Key
+import com.lamthe.codenames.key.KeyGenerator
+import com.lamthe.codenames.key.KeySpot
 import com.lamthe.codenames.words.WordsService
 
 class FakeWordsService: WordsService {

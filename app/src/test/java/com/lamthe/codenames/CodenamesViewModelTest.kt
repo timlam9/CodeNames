@@ -1,5 +1,7 @@
 package com.lamthe.codenames
 
+import com.lamthe.codenames.key.Key
+import com.lamthe.codenames.key.KeySpot
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

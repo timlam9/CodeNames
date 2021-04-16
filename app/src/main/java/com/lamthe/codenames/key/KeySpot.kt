@@ -1,4 +1,4 @@
-package com.lamthe.codenames
+package com.lamthe.codenames.key
 
 enum class KeySpot {
     Blue,

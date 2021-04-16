@@ -1,4 +1,4 @@
-package com.lamthe.codenames
+package com.lamthe.codenames.di
 
 import com.lamthe.codenames.words.InMemoryWordsService
 import com.lamthe.codenames.words.WordsService
