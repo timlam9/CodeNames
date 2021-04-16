@@ -1,7 +1,6 @@
 package com.lamthe.codenames
 
-import com.lamthe.codenames.key.Key
-import com.lamthe.codenames.key.KeySpot
+import com.lamthe.codenames.cards.Card
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -9,24 +8,18 @@ class CodenamesViewModelTest {
 
     @Test
     fun `given a list of words, when , then`() {
-        val viewModel = CodenamesViewModel(FakeWordsService(), FakeKeyGenerator())
+        val wordsService = FakeWordsService()
+        val keyGenerator = FakeKeyGenerator()
+        val viewModel = CodenamesViewModel(wordsService, keyGenerator)
 
-        val key = viewModel.key
+        val words = wordsService.words()
+        val key = keyGenerator.generate()
+        val expectedCards = words.mapIndexed { index, title ->
+            Card(title = title, identity = key.spots[index])
+        }
+        val cards = viewModel.cards
 
-        assertEquals(createKey(), key)
-    }
-
-    private fun createKey(): Key {
-        return Key(
-            listOf(
-                KeySpot.Blue, KeySpot.White, KeySpot.White, KeySpot.Blue, KeySpot.White,
-                KeySpot.Red, KeySpot.Blue, KeySpot.Black, KeySpot.White, KeySpot.Blue,
-                KeySpot.Red, KeySpot.Red, KeySpot.Red, KeySpot.Red, KeySpot.Blue,
-                KeySpot.Blue, KeySpot.White, KeySpot.Red, KeySpot.White, KeySpot.Red,
-                KeySpot.White, KeySpot.Blue, KeySpot.Blue, KeySpot.Red, KeySpot.Red
-            )
-        )
+        assertEquals(expectedCards, cards)
     }
 
 }
-

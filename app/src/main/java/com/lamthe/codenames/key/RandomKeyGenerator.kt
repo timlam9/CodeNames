@@ -1,12 +1,21 @@
 package com.lamthe.codenames.key
 
-import com.lamthe.codenames.key.Key
-import com.lamthe.codenames.key.KeyGenerator
+import kotlin.random.Random
 
 class RandomKeyGenerator : KeyGenerator {
 
     override fun generate(): Key {
-        TODO("Not yet implemented")
+        val blueSpots = (0..7).map { KeySpot.Blue }
+        val redSpots = (0..7).map { KeySpot.Red }
+        val whiteSpots = (0..7).map { KeySpot.White }
+
+        return Key(
+            (blueSpots + redSpots + whiteSpots + KeySpot.Black + randomSpot()).shuffled()
+        )
+    }
+
+    private fun randomSpot(): KeySpot {
+        return if (Random.nextInt().rem(2) == 0) KeySpot.Red else KeySpot.Blue
     }
 
 }
