@@ -36,13 +36,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CodenamesScreen() {
     val words = (1..25).map { it.toString() }
-    Column {
-        Text(text = stringResource(id = R.string.board))
-        LazyVerticalGrid(cells = GridCells.Fixed(5) ) {
-            items(words.size) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(text = "$it")
-                }
+
+    LazyVerticalGrid(cells = GridCells.Fixed(5)) {
+        items(words.size) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(text = "$it")
             }
         }
     }
