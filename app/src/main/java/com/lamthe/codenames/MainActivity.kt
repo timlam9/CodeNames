@@ -3,6 +3,7 @@ package com.lamthe.codenames
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.GridCells
@@ -12,20 +13,21 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.lamthe.codenames.ui.theme.CodeNamesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: CodenamesViewModel by viewModels()
+
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             CodeNamesTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    CodenamesScreen()
+                    CodenamesScreen(words = viewModel.words)
                 }
             }
         }
@@ -34,23 +36,12 @@ class MainActivity : ComponentActivity() {
 
 @ExperimentalFoundationApi
 @Composable
-fun CodenamesScreen() {
-    val words = (1..25).map { it.toString() }
-
+fun CodenamesScreen(words: List<String>) {
     LazyVerticalGrid(cells = GridCells.Fixed(5)) {
-        items(words.size) {
+        items(words.size) { index ->
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = "$it")
+                Text(text = words[index])
             }
         }
-    }
-}
-
-@ExperimentalFoundationApi
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CodeNamesTheme {
-        CodenamesScreen()
     }
 }

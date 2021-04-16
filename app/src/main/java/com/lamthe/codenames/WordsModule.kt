@@ -1,19 +1,18 @@
 package com.lamthe.codenames
 
+import com.lamthe.codenames.words.InMemoryWordsService
 import com.lamthe.codenames.words.WordsService
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
 
 
 @Module
-@InstallIn(SingletonComponent::class)
-abstract class WordsModule {
+@InstallIn(ViewModelComponent::class)
+object WordsModule {
 
-    @Binds
-    @Singleton
-    abstract fun bindWordsService(wordsService: WordsService): WordsService
+    @Provides
+    fun provideWordsService(): WordsService = InMemoryWordsService()
 
 }

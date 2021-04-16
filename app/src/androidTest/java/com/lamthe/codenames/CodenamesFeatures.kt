@@ -7,18 +7,13 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lamthe.codenames.words.WordsService
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
-import dagger.hilt.components.SingletonComponent
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import javax.inject.Singleton
 
 @HiltAndroidTest
 @UninstallModules(WordsModule::class)
@@ -30,14 +25,6 @@ class CodenamesFeatures {
 
     @get:Rule(order = 1)
     val codenamesRule = createAndroidComposeRule<MainActivity>()
-
-    @Module @InstallIn(SingletonComponent::class)
-    abstract class TestWordsModule {
-
-        @Binds @Singleton
-        abstract fun bindWordsService(fakeWordsService: FakeWordsService): WordsService
-
-    }
 
     @BindValue @JvmField
     val wordsService: WordsService = FakeWordsService()
