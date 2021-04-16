@@ -41,7 +41,7 @@ class CodenamesFeatures {
 class FakeWordsService: WordsService {
 
     override fun words(): List<String> {
-        return (0..24).map { it.toString() }
+        return (0..24).map { it.toString() }.shuffled()
     }
 
 }

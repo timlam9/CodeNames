@@ -29,6 +29,6 @@ class InMemoryWordsService : WordsService {
             "Bed",
             "Earthquake",
             "Pin",
-        )
+        ).shuffled()
 
 }
